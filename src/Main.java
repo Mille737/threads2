@@ -1,6 +1,6 @@
 // Java program to demonstrate inter-thread communication
-// (wait(), join() and notify()) in Java
-import java.util.Scanner;
+// (wait() and notify()) in Java
+
 public class Main {
     public static void main(String[] args) throws InterruptedException {
 
@@ -11,7 +11,7 @@ public class Main {
             @Override
             public void run() {
                 try {
-                    pc.produce();
+                    pc.thread1();
                 }
                 catch(InterruptedException e) {
                     e.printStackTrace();
@@ -20,7 +20,6 @@ public class Main {
         });
 
         // Create another thread object that calls
-        // pc.consume()
         Thread t2 = new Thread(new Runnable()
         {
             @Override
@@ -28,7 +27,7 @@ public class Main {
             {
                 try
                 {
-                    pc.consume();
+                    pc.thread2();
                 }
                 catch(InterruptedException e)
                 {
@@ -40,9 +39,5 @@ public class Main {
         // Start both threads
         t1.start();
         t2.start();
-
-        // t1 finishes before t2
-        t1.join();
-        t2.join();
     }
 }

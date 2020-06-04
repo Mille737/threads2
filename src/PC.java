@@ -1,10 +1,8 @@
 import java.util.Scanner;
 
-// PC (Produce Consumer) class with produce() and
-// consume() methods.
 public class PC {
-    // Prints a string and waits for consume()
-    public void produce()throws InterruptedException
+    // Prints a string and waits for thread2()
+    public void thread1()throws InterruptedException
     {
         // synchronized block ensures only one thread
         // running at a time.
@@ -20,9 +18,7 @@ public class PC {
         }
     }
 
-    // Sleeps for some time and waits for a key press. After key
-    // is pressed, it notifies produce().
-    public void consume()throws InterruptedException
+    public void thread2()throws InterruptedException
     {
         Thread.sleep(5000);
 
